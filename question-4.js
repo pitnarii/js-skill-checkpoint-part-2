@@ -19,22 +19,39 @@ const alphaTechWithCompany = alphaTech.map(employee => ({
   ...employee,
   company: "alphaTech"
 }));
+// console.log(alphaTechWithCompany)
 
 const betaSoftWithCompany = betaSoft.map(employee => ({
   ...employee,
   company: "betaSoft"
 }));
 
-const allEmployees = [...alphaTechWithCompany, ...betaSoftWithCompany];
+const gammaDevWithCompany = gammaDev.map(employee => ({
+  ...employee, 
+  company: "gammaDev"
+}))
+// console.log(gammaDevWithCompany)
+
+const allEmployees = [...alphaTechWithCompany, ...betaSoftWithCompany,...gammaDevWithCompany];
+console.log(allEmployees)
+
 
 const result = allEmployees.filter((employee) => {
-  return employee.department === 'Enginring' && employee.age >= 20;
+  return employee.department === 'Engineering' && employee.age >= 20;
 }).map((employee) => {
   return {
     name: employee.name,
-    company: '' 
+    company: employee.company 
   };
 });
+/*
+- โค้ดชุดนี้จะทำงานดังนี้:
+    1. รวมข้อมูลพนักงานจากทั้ง 3 บริษัทให้อยู่ใน Array เดียว
+    2. จากนั้นนำข้อมูลที่ได้จากข้อ 1 มากรองเฉพาะพนักงานที่อยู่ในแผนก `Engineering` และมีอายุตั้งแต่ 20 ปีขึ้นไป (รวมคนที่อายุ 20 ด้วย)
+    3. นำข้อมูลที่ได้จากข้อ 2 มาแปลงผลลัพธ์ ให้เหลือเพียง  `name` และ `company` ของแต่ละคน
+    4. ห้าม hardcode ชื่อบริษัทลงในข้อมูลโดยตรง ให้เขียนโค้ดเพื่อเข้าถึงข้อมูล `company` ของพนักงานแต่ละคนเท่านั้น
+*/
+
 
 console.log(result);
 // [

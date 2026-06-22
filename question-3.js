@@ -8,10 +8,26 @@ instruction
 ใช้ Built-in Array Function (Map, Filter หรือ Reduce) เช่น
 - หลังจากการแปลงข้อมูล ผลลัพธ์ควรจะแสดงบนหน้าจอแบบนี้
 */
-function getUsers() {
-    const response = fetch('https://jsonplaceholder.typicode.com/users')
-    response.json()
-                        
+async function getUsers() {
+    try {
+        const response = await fetch(
+            'https://jsonplaceholder.typicode.com/users'
+        );
+        const data = await response.json();
+        // console.log(data);
+        return data
+        
+    } catch (error) {
+        console.log('Something went wrong:', error.message);
+    }
 }
+getUsers()
+
+const users = await getUsers();
+const filterName = users
+    .filter(user => user.name.length > 17) 
+    .map(user => user.name)
+console.log(filterName);
+
 
 // [ 'Mrs. Dennis Schulist', 'Nicholas Runolfsdottir V', 'Clementina DuBuque' ]
